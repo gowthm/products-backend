@@ -9,20 +9,20 @@ router.post("/", async (req, res) => {
     const { user_name, name, password } = req.body;
     let existingUser = await User.findOne({ user_name });
     if (existingUser) {
-      return res.status(400).json({ error: 'User with the same email already exists' });
+       return res.status(400).send({ status: false, message: 'User with the same email already exists' });
     }
     const user = new User({ name, user_name, password: genPass(password) });
     const AddUser = await user.save();
     res.status(200).send({
       status: true,
-      message: "user created successfully",
+      message: "User created successfully",
       data: AddUser
     });
   } catch (error) {
     console.log(error);
     res.status(404).send({
       status: false,
-      message: "user created failed",
+      message: "User created failed",
     });
   }
 });
