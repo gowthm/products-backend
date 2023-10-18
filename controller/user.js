@@ -4,6 +4,9 @@ const User = require("../models/user");
 const { genPass, verifyPass } = require("../utils/password");
 const { genToken } = require("../utils/json-web-token");
 
+
+// User Signup 
+
 router.post("/", async (req, res) => {
   try {
     const { user_name, name, password } = req.body;
@@ -26,6 +29,8 @@ router.post("/", async (req, res) => {
     });
   }
 });
+
+// User Login
 
 router.post("/login", async (req, res) => {
   try {
